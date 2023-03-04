@@ -61,6 +61,16 @@ ipcMain.on("choose-folder", async (event, data) => {
   console.log(result.filePaths[0]);
 });
 
+ipcMain.on("remove-files", async (event, data) => {
+  const dirPath = store.get("filesPath");
+  await readdir(dirPath, (err, files) => {
+    files.forEach(async (e, i) => {
+      const currentPathFile = `${dirPath}/${e}`;
+      unlinkSync(currentPathFile);
+    });
+  });
+});
+
 ipcMain.on("submit-photo", async (event, data) => {
   const dirPath = store.get("filesPath");
   await readdir(dirPath, (err, files) => {

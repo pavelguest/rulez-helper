@@ -1,11 +1,33 @@
+
 html,
 body {
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: 100%;
   margin: 0;
-  background: #263238;
+  padding: 20px;
+  background: #b3cdda;
+}
+.App,
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  row-gap: 20px;
+}
+.str {
+  width: 200px;
+  height: 100px;
+  overflow: auto;
+}
+.button,
+.input-form {
+  width: 200px;
+  padding: 5px;
+}
+.button-submit {
+  color: azure;
+  background: #566972;
 }

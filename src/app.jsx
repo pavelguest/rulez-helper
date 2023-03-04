@@ -2,7 +2,6 @@ import * as React from "react";
 import ReactDOM from "react-dom/client";
 import CyrillicToTranslit from "cyrillic-to-translit-js";
 import { useClipboard } from "use-clipboard-copy";
-import "./App.css";
 
 const ItemComponent = ({ str }) => {
   return (
@@ -50,31 +49,54 @@ function App() {
     window.electron.send("choose-folder", "choose");
   }, []);
 
+  const handleRemoveImages = React.useCallback(() => {
+    window.electron.send("remove-files", "remove");
+  }, []);
+
   return (
     <div className="App">
-      <div className="input-container">
-        <button onClick={handleChooseFile}>Choose folder</button>
+      <div className="button-container">
+        <button onClick={handleChooseFile} className="button">
+          Выберите папку
+        </button>
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <div className="input-container">
-          <input type="text" ref={folderNumRef} placeholder="Folder number:" />
+          <input
+            type="text"
+            ref={folderNumRef}
+            placeholder="Номер папки на сервере"
+            className="input-form"
+          />
         </div>
         <div className="input-container">
-          <input type="text" ref={productNameRef} placeholder="Product Name:" />
+          <input
+            type="text"
+            ref={productNameRef}
+            placeholder="Имя продукта"
+            className="input-form"
+          />
         </div>
         <div className="input-container">
           <input
             type="text"
             ref={countPhotoRef}
-            placeholder="Number of photos:"
+            placeholder="Количество изображений"
+            className="input-form"
           />
         </div>
-        <button className="button" type="submit">
-          Submit
+        <button className="button button-submit" type="submit">
+          Конвертировать
         </button>
       </form>
       <button onClick={() => clipboard.copy(str)} className="button">
-        Copy Text
+        Копировать путь
+      </button>
+      <button onClick={() => {}} className="button">
+        Копировать изображения
+      </button>
+      <button onClick={handleRemoveImages} className="button">
+        Удалить файлы из папки
       </button>
       <ItemComponent str={str} />
     </div>
