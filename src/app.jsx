@@ -55,50 +55,54 @@ function App() {
 
   return (
     <div className="App">
-      <div className="button-container">
-        <button onClick={handleChooseFile} className="button">
-          Выберите папку
-        </button>
+      <div className="buttons-container">
+        <div className="button-container">
+          <button onClick={handleChooseFile} className="button">
+            Выберите папку
+          </button>
+        </div>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="input-container">
+            <input
+              type="text"
+              ref={folderNumRef}
+              placeholder="Номер папки на сервере"
+              className="input-form"
+            />
+          </div>
+          <div className="input-container">
+            <input
+              type="text"
+              ref={productNameRef}
+              placeholder="Имя продукта"
+              className="input-form"
+            />
+          </div>
+          <div className="input-container">
+            <input
+              type="text"
+              ref={countPhotoRef}
+              placeholder="Количество изображений"
+              className="input-form"
+            />
+          </div>
+          <button className="button button-submit" type="submit">
+            Конвертировать
+          </button>
+        </form>
       </div>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="input-container">
-          <input
-            type="text"
-            ref={folderNumRef}
-            placeholder="Номер папки на сервере"
-            className="input-form"
-          />
-        </div>
-        <div className="input-container">
-          <input
-            type="text"
-            ref={productNameRef}
-            placeholder="Имя продукта"
-            className="input-form"
-          />
-        </div>
-        <div className="input-container">
-          <input
-            type="text"
-            ref={countPhotoRef}
-            placeholder="Количество изображений"
-            className="input-form"
-          />
-        </div>
-        <button className="button button-submit" type="submit">
-          Конвертировать
+      <div className="buttons-container">
+        <button onClick={() => clipboard.copy(str)} className="button">
+          Копировать путь
         </button>
-      </form>
-      <button onClick={() => clipboard.copy(str)} className="button">
-        Копировать путь
-      </button>
-      <button onClick={() => {}} className="button">
-        Копировать изображения
-      </button>
-      <button onClick={handleRemoveImages} className="button">
-        Удалить файлы из папки
-      </button>
-      <ItemComponent str={str} />
+        <button onClick={() => {}} className="button" disabled>
+          Копировать изображения
+        </button>
+        <button onClick={handleRemoveImages} className="button">
+          Удалить файлы из папки
+        </button>
+        <ItemComponent str={str} />
+      </div>
     </div>
   );
 }
